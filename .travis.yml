@@ -26,12 +26,8 @@ install:
   - pip install torch torchvision torchaudio pytorch-lightning
   - pip install .
 
-#script:
-#  - mkdir for_test
-#  - cd for_test
-#  - pytest -v --cov=dbgen --pyargs dbgen
 script:
   - coverage run -m unittest discover
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
