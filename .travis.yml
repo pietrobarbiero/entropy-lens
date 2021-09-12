@@ -23,7 +23,8 @@ install:
   - conda create -n testenv --yes python=$PYTHON_VERSION pip
   - source activate testenv
   - pip install sympy pandas scikit-learn tqdm cython nose seaborn matplotlib pytest pytest-cov codecov
-  - pip install torch torchvision torchaudio pytorch-lightning
+  - pip install pytorch torchvision torchaudio cpuonly -c pytorch
+  - pip install pytorch-lightning
   - pip install .
 
 script:
