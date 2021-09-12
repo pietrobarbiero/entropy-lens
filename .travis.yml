@@ -22,7 +22,7 @@ install:
   # create the testing environment
   - conda create -n testenv --yes python=$PYTHON_VERSION pip
   - source activate testenv
-  - conda install --yes sympy pandas scikit-learn tqdm cython nose pytest pytest-cov
+  - conda install --yes sympy pandas scikit-learn tqdm cython nose pytest pytest-cov codecov
   - conda install --yes pytorch torchvision torchaudio cpuonly -c pytorch
   - conda install --yes matplotlib seaborn
   - pip install pytorch-lightning
@@ -34,7 +34,8 @@ install:
 #  - cd for_test
 #  - pytest -v --cov=dbgen --pyargs dbgen
 script:
-  - coverage run -m unittest || python3 -m unittest || python -m unittest
+  - pytest --cov-report term --cov=investpy tests/
+#  - coverage run -m unittest || python3 -m unittest || python -m unittest
 
 after_success:
   - codecov
