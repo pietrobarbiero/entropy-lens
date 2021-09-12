@@ -2,8 +2,8 @@
 
 [run]
 branch = True
-source = template
-include = */template/*
+source = entropy_lens
+include = */entropy_lens/*
 omit =
     */setup.py
 
