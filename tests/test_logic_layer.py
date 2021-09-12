@@ -72,7 +72,7 @@ class TestTemplateObject(unittest.TestCase):
                     explanation_class_i, exp_raw = entropy.explain_class(model, x, y1h, x, y1h, target_class,
                                                                          concept_names=concept_names)
                     accuracy_i, preds = test_explanation(exp_raw, x, y1h, target_class)
-                    if explanation_class_i: explanation_class_1 = explanation_class_i.replace('&', '∧').replace('|', '∨').replace('~', '¬')
+                    if explanation_class_i: explanation_class_i = explanation_class_i.replace('&', '∧').replace('|', '∨').replace('~', '¬')
                     explanation_class_i = f'∀x: {explanation_class_i} ↔ {target_class_names[target_class]}'
 
                     print(f'\tExplanation class {target_class} (acc. {accuracy_i*100:.2f}): {explanation_class_i}')
