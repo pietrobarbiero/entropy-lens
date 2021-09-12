@@ -6,8 +6,7 @@ from torch.nn.functional import one_hot
 
 import entropy_lens as te
 from entropy_lens.logic.metrics import test_explanation, complexity
-from entropy_lens.logic.nn import entropy, psi
-from entropy_lens.nn.functional import prune_equal_fanin
+from entropy_lens.logic.nn import entropy
 
 
 class TestTemplateObject(unittest.TestCase):
@@ -73,60 +72,6 @@ class TestTemplateObject(unittest.TestCase):
             assert accuracy == 1
 
         return
-
-    def test_psi_explain_class_binary(self):
-        for i in range(1):
-            seed_everything(i)
-
-            # Problem 1
-            x = torch.tensor([
-                [0, 0],
-                [0, 1],
-                [1, 0],
-                [1, 1],
-            ], dtype=torch.float)
-            y = torch.tensor([0, 1, 1, 0], dtype=torch.float).unsqueeze(1)
-
-            layers = [
-                torch.nn.Linear(x.shape[1], 10),
-                torch.nn.Sigmoid(),
-                torch.nn.Linear(10, 5),
-                torch.nn.Sigmoid(),
-                torch.nn.Linear(5, 1),
-                torch.nn.Sigmoid(),
-            ]
-            model = torch.nn.Sequential(*layers)
-
-            optimizer = torch.optim.AdamW(model.parameters(), lr=0.01)
-            loss_form = torch.nn.BCELoss()
-            model.train()
-            for epoch in range(6001):
-                optimizer.zero_grad()
-                y_pred = model(x)
-                loss = loss_form(y_pred, y) + 0.000001 * te.nn.functional.l1_loss(model)
-                loss.backward()
-                optimizer.step()
-
-                model = prune_equal_fanin(model, epoch, prune_epoch=1000, k=2)
-
-                # compute accuracy
-                if epoch % 100 == 0:
-                    accuracy = y.eq(y_pred>0.5).sum().item() / y.size(0)
-                    print(f'Epoch {epoch}: loss {loss:.4f} train accuracy: {accuracy:.4f}')
-
-            y1h = one_hot(y.squeeze().long())
-
-            explanation = psi.explain_class(model, x)
-            explanation_complexity = complexity(explanation)
-            print(explanation)
-            print(explanation_complexity)
-            assert explanation == '(feature0000000000 & ~feature0000000001) | (feature0000000001 & ~feature0000000000)'
-            accuracy, preds = test_explanation(explanation, x, y1h, target_class=1)
-            print(f'Accuracy: {100*accuracy:.2f}%')
-            assert accuracy == 1
-
-        return
-
 
     def test_entropy_multi_target(self):
 
