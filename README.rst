@@ -30,6 +30,22 @@ providing both
 * the predictions for the target classes and
 * first-order logic formulas explaining how they arrived to decisions.
 
+This paper contains the implementation presented in the original paper::
+
+    @article{barbiero2021entropy,
+      title={Entropy-based Logic Explanations of Neural Networks},
+      author={Barbiero, Pietro and Ciravegna, Gabriele and Giannini, Francesco and Li{\'o}, Pietro and Gori, Marco and Melacci, Stefano},
+      journal={arXiv preprint arXiv:2106.06804},
+      year={2021}
+    }
+
+
+
+For low-level APIs for Logic Explained Networks (including e-LENs) refer to:
+`torch_explain <https://github.com/pietrobarbiero/pytorch_explain>`__.
+
+For high-level APIs (out-of-the-box LENs) refer to:
+`logic_explainer_networks <https://github.com/pietrobarbiero/logic_explainer_networks>`__.
 
 Quick start
 -----------
