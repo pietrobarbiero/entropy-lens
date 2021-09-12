@@ -1,6 +1,29 @@
 Entropy-based Logic Explained Networks
 -----------------------------------------
 
+|Build|
+|Coverage|
+
+|Dependendencies|
+|PyPI license|
+
+
+.. |Build| image:: https://img.shields.io/travis/pietrobarbiero/entropy-lens?label=Master%20Build&style=for-the-badge
+    :alt: Travis (.org)
+    :target: https://travis-ci.org/pietrobarbiero/entropy-lens
+
+.. |Coverage| image:: https://img.shields.io/codecov/c/gh/pietrobarbiero/entropy-lens?label=Test%20Coverage&style=for-the-badge
+    :alt: Codecov
+    :target: https://codecov.io/gh/pietrobarbiero/entropy-lens
+
+.. |Dependendencies| image:: https://img.shields.io/requires/github/pietrobarbiero/entropy-lens?style=for-the-badge
+    :alt: Requires.io
+    :target: https://requires.io/github/pietrobarbiero/entropy-lens/requirements/?branch=master
+
+.. |PyPI license| image:: https://img.shields.io/github/license/pietrobarbiero/entropy-lens?style=for-the-badge&logo=appveyor
+   :target: https://github.com/pietrobarbiero/entropy-lens
+
+
 Entropy-based Logic Explained Networks (e-LENs) are explainable deep learning classifiers
 providing both
 
