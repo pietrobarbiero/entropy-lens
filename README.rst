@@ -1,3 +1,5 @@
+**Note**: The development of this project was moved to https://github.com/pietrobarbiero/pytorch_explain.
+
 Entropy-based Logic Explained Networks
 -----------------------------------------
 
